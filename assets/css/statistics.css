@@ -1,0 +1,295 @@
+.modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .modal-content.stats-modal {
+        max-width: 1100px;
+        width: 90%;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover { color: black; }
+    form label {
+        display: block;
+        margin-top: 10px;
+    }
+    form input, form textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        box-sizing: border-box;
+    }
+    form button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        background-color: #0d47a1;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Statistics Modal Styling */
+    .stats-container {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .stats-container h2 {
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 1.8em;
+    }
+    
+    .stat-item {
+        background-color: #f8f9fa;
+        padding: 25px 20px;
+        border-radius: 12px;
+        flex: 1;
+        min-width: 180px;
+        max-width: 30%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #e9ecef;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .stat-item h3 {
+        margin: 0 0 15px 0;
+        color: #555;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+    .stat-value {
+        font-size: 2.8em;
+        font-weight: bold;
+        color: #0d47a1;
+        margin-bottom: 5px;
+    }
+    .stat-value.done {
+        color: #28a745;
+    }
+    .stat-value.ongoing {
+        color: #ffc107;
+    }
+    .stat-percentage {
+        font-size: 1em;
+        color: #6c757d;
+        font-weight: 500;
+    }
+    
+    #statsModalContentPlaceholder {
+        font-family: Arial, sans-serif;
+        /* No background-color here as the modal container already has one */
+        padding: 0; /* Remove default padding, container handles it */
+        margin: 0;
+        width: 100%; /* Ensure it fills its parent container */
+        height: 100%; /* Ensure it fills its parent container */
+        overflow-y: auto; /* Allow scrolling if content is too long */
+    }
+
+    #statsModalContentPlaceholder h2 {
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center; /* Ensure heading is centered within the modal */
+    }
+    .stats-grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        padding: 10px; /* Space for potential scrollbar */
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+    .stat-item {
+        background-color: #e0e0e0;
+        padding: 15px; /* Slightly less padding for main items */
+        border-radius: 8px;
+        flex-shrink: 0;
+        min-width: 230px; /* Adjusted width for 4 items + content */
+        max-width: 230px; /* Adjusted width for 4 items + content */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 150px; /* Increased height to accommodate inner grid */
+    }
+    .stat-item h3 {
+        margin: 0 0 10px 0;
+        color: #555;
+        font-size: 1.2em;
+    }
+    .stat-value {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #0d47a1; /* Default blue for total */
+    }
+    .stat-value.done {
+        color: #28a745; /* Green for done */
+    }
+    .stat-value.ongoing {
+        color: #ffc107; /* Orange/Yellow for ongoing */
+    }
+    .stat-percentage {
+        font-size: 1.1em;
+        color: #777;
+        margin-top: 5px;
+    }
+
+    /* Styles for the nested breakdown mini-grid */
+    .stat-item.breakdown-container {
+        background-color: #ffe0b2; /* Distinct background for the breakdown container */
+        border: 1px solid #ffcc80;
+        align-items: flex-start; /* Align content to the start */
+        padding: 15px; /* Ensure consistent padding */
+    }
+    .breakdown-container h3 {
+        color: #e65100;
+        margin-bottom: 10px;
+        width: 100%; /* Ensure heading takes full width */
+        text-align: center; /* Center the heading */
+    }
+
+    .breakdown-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* 2 columns, adjust minmax for more */
+        gap: 10px; /* Gap between mini-items */
+        width: 100%; /* Take full width of parent stat-item */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .breakdown-mini-item {
+        background-color: #fff3e0; /* Lighter background for mini-items */
+        border: 1px solid #ffb74d;
+        border-radius: 5px;
+        padding: 8px;
+        text-align: center;
+        font-size: 0.9em;
+        color: #f57c00;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60px; /* Ensure a minimum height for mini-items */
+    }
+    .breakdown-mini-item .mini-label {
+        font-weight: bold;
+        margin-bottom: 3px;
+    }
+    .breakdown-mini-item .mini-count {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #e65100;
+    }
+
+    /* Stage Statistics Table */
+    .stage-stats-table {
+        width: 100%;
+        margin-top: 40px;
+        border-collapse: collapse;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .stage-stats-table th, .stage-stats-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+    .stage-stats-table th {
+        background-color: #c62828;
+        color: white;
+        font-size: 1.1em;
+    }
+    .stage-stats-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .stage-stats-table tr:hover {
+        background-color: #f1f1f1;
+    }
+    .stage-stats-table .stage-name {
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 600px) {
+        .stats-grid {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stat-item {
+            max-width: 90%;
+            min-width: unset;
+            width: 100%;
+        }
+        .stat-item.breakdown-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .breakdown-container h3 {
+            text-align: center;
+        }
+    }
+
+  .clickable-stat {
+        text-decoration: none; /* Remove underline */
+        color: inherit;      /* Inherit text color */
+        display: flex;       /* Use flexbox to maintain layout */
+        flex-direction: column; /* Stack content vertically */
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        cursor: pointer;     /* Indicate it's clickable */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .clickable-stat:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .all-finished-message {
+        font-size: 1.1em; 
+        color: #f57c00;
+    }
+
+    .stage-breakdown-title {
+        margin-top: 40px; 
+        color: #333;
+    }

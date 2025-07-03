@@ -1,0 +1,1342 @@
+/* Dashboard container is already defined in index.css */
+
+
+        /* Project Header Styling */
+        .project-header {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .project-header label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .project-header input, .project-header textarea {
+            width: 100%;
+            padding: 3px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px; 
+        }
+        /* Read-only field styling */
+        .readonly-field {
+            padding: 10px 12px;
+            margin-top: 0px;
+            border: 2px solid #e0e0e0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            color: #666;
+            min-height: 20px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            /* Added for hover effect consistency */
+            transition: background-color 0.3s ease; 
+        }
+        .back-btn:hover {
+            background-color: #1565c0;
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Update Project Details button styling (matching back-btn) */
+        .update-project-details-btn {
+            display: inline-block;
+            background-color: #007bff; /* Same as back-btn */
+            color: white;
+            padding: 10px 20px;
+            margin-top: 15px; /* Adjust margin as needed */
+            text-decoration: none;
+            border-radius: 20px; /* Same as back-btn */
+            font-weight: bold;
+            cursor: pointer;
+            border: none; /* Ensure no default button border */
+            transition: background-color 0.3s ease; /* Smooth transition */
+            font-size: 14px; /* Smaller font size as per previous button */
+            text-transform: uppercase; /* As per previous button */
+            letter-spacing: 0.5px; /* As per previous button */
+        }
+
+        .update-project-details-btn:hover {    
+            background-color: #1565c0;
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .update-project-details-btn:active {
+            transform: translateY(1px); /* Slight press effect */
+        }
+        .update-project-details-btn:focus {
+            outline: none; /* Remove outline */
+            box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.3); /* Focus ring */
+        }
+
+        /* Stages Table Styling */
+        table#stagesTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed; /* Ensures columns respect defined widths */
+        }
+        table#stagesTable th, table#stagesTable td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle; /* Align content vertically */
+            word-wrap: break-word; /* Allow long words to break */
+        }
+        table#stagesTable th {
+            background-color: #c62828;
+            color: white;
+        }
+        table#stagesTable td input[type="datetime-local"],
+        table#stagesTable td input[type="text"] {
+            width: calc(100% - 10px); /* Adjust for padding/border */
+            padding: 4px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table#stagesTable td input[disabled] {
+            background-color: #e9e9e9;
+            cursor: not-allowed;
+        }
+        /* Form for each stage row */
+        form.stage-form {
+            display: contents; /* Allows row elements to behave as direct table children */
+        }
+        /* Submit/Unsubmit button styling */
+        .submit-stage-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #28a745; /* Green for submit */
+            color: white;
+        }
+        .submit-stage-btn[disabled] {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .submit-stage-btn.unsubmit-btn {
+            background-color: #dc3545; /* Red for unsubmit */
+        }
+
+/* === Default Desktop Styling === */
+.table-wrapper {
+    display: block;
+}
+
+/* === Default Desktop Styling === */
+.table-wrapper {
+    display: block;
+}
+
+/* === Mobile View (< 500px): Switch to Card View === */
+@media screen and (max-width: 499px) {
+    .table-wrapper {
+        display: none;
+    }
+
+    .dashboard-container {
+        width: 80%;
+        height: auto;
+        padding: 5px 15px;
+        margin-top: 10vh;
+    }
+
+    .dashboard-container input,
+    .dashboard-container textarea {
+        font-size: 16px;
+    }
+
+    .dashboard-container h2,
+    .dashboard-container h3 {
+        font-size: 20px;
+    }
+
+    .submit-stage-btn {
+        width: 50%;
+        display: block;
+        margin: 10px auto 0 auto;
+    }
+    
+    /* Responsive adjustments for the update button */
+    .update-project-details-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+}
+        /* === Card Styling === */
+        .stage-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .stage-card label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        .stage-card input[type="text"],
+        .stage-card input[type="datetime-local"] {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .stage-card .submit-stage-btn {
+            margin-top: 10px;
+            width: 100%;
+        }
+        .project-status {
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 5px;
+            color: white;
+            width: 15%;
+        }
+        .project-status.finished {
+            background-color: #28a745; /* Green */
+        }
+        .project-status.in-progress {
+            background-color: #ffc107; /* Orange/Yellow */
+            color: #333;
+        }
+
+/* Fix for layout issues */
+body {
+    padding-top: 60px; /* Reduced from 80px */
+}
+.dashboard-container {
+    margin-top: 80px; /* Reduced from 150px to prevent header overlap */
+    width: 90%; /* Use percentage width instead of max-width */
+    margin-left: auto; /* Center the container */
+    margin-right: auto;
+    margin-bottom: 40px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 100%;
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Visual distinction between admin and user views */
+.admin-view .dashboard-container {
+    border-top: 4px solid #0d47a1; /* Blue top border for admin */
+}
+.admin-view h1::after {
+    content: " (Admin View)";
+    font-size: 0.6em;
+    color: #0d47a1;
+    font-weight: normal;
+    vertical-align: middle;
+}
+.user-view .dashboard-container {
+    border-top: 4px solid #c62828; /* Red top border for users */
+}
+.user-view h1::after {
+    content: " (User View)";
+    font-size: 0.6em;
+    color: #c62828;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+/* Improve button styling */
+.back-btn {
+    margin-bottom: 30px; /* Add more space below the back button */
+}
+
+/* Improve table readability */
+table#stagesTable th, table#stagesTable td {
+    padding: 12px; /* Consistent padding */
+}
+
+/* Improve form inputs */
+input[type="datetime-local"], input[type="text"] {
+    padding: 8px; /* More padding for better touch targets */
+}
+
+/* Stage Dropdown Container */
+.stage-dropdown-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    position: relative;
+}
+
+.stage-dropdown-container label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.stage-dropdown-container select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Stage Form Container */
+.stage-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    scroll-margin-top: 20px;
+}
+
+.stage-form-container .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.stage-form-container .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.stage-form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.stage-form-container input[type="datetime-local"],
+.stage-form-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Readonly Office Field */
+.readonly-office-field {
+    padding: 8px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    color: #6c757d;
+}
+
+/* Submit Stage Button */
+.submit-stage-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.submit-stage-btn:not(:disabled) {
+    background: #28a745;
+    color: white;
+}
+
+.submit-stage-btn:not(:disabled):hover {
+    background: #1b5e20;
+}
+
+.submit-stage-btn:disabled {
+    background: #6c757d;
+    color: white;
+    cursor: not-allowed;
+}
+
+.submit-stage-btn.available {
+    background: #28a745;
+    color: white;
+}
+
+.submit-stage-btn.completed {
+    background: #28a745;
+    color: white;
+}
+
+
+
+.submit-stage-btn.autofilled {
+    background: #28a745;
+    color: white;
+}
+
+.submit-stage-btn.unsubmit-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.submit-stage-btn.unsubmit-btn:hover {
+    background: #c82333;
+}
+
+/* Stages Table */
+#stagesTable tbody tr[data-stage] {
+    transition: background-color 0.3s ease;
+}
+
+#stagesTable tbody tr[data-stage]:hover {
+    background-color: #f5f5f5;
+}
+
+/* Sequential Info */
+.sequential-info {
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* Toast Success */
+.toast-success {
+    display: none;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #28a745;
+    color: #fff;
+    padding: 18px 32px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.6s;
+}
+
+/* Success and Error Messages */
+.project-success-message {
+    background: #e8f5e8;
+    color: #2e7d32;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 4px solid #4caf50;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.project-error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 4px solid #f44336;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Edit Project specific styles */
+.project-error-message {
+    color: red;
+}
+
+.project-success-message {
+    color: green;
+}
+
+.project-form {
+    margin-bottom: 10px;
+}
+
+.stage-table-wrapper {
+    margin-top: 20px;
+}
+
+.stage-table th.col-stage { width: 15%; }
+.stage-table th.col-created { width: 20%; }
+.stage-table th.col-approved { width: 20%; }
+.stage-table th.col-office { width: 15%; }
+.stage-table th.col-remark { width: 15%; }
+.stage-table th.col-status { width: 15%; }
+
+.stage-form-inline {
+    display: contents;
+}
+
+.stage-not-set {
+    color: #6c757d;
+}
+
+.stage-actions {
+    margin-top: 10px;
+}
+
+/* Improved Edit Project Layout */
+
+/* Project Information Card */
+.project-info-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #1565c0;
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+    border-bottom: 3px solid #e0e6ed;
+    position: relative;
+}
+
+.project-info-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #1565c0, transparent);
+}
+
+.project-info-card h3 {
+    color: #1565c0;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.project-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 20px; /* Vertical gap, Horizontal gap */
+    align-items: start;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.project-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.project-info-item label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.project-info-item .value {
+    margin-top: -5px;   /*edited*/
+    color: #666;
+    line-height: 1.5;
+    padding: 10px 0;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.project-info-item input,
+.project-info-item textarea {
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.project-info-item textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.project-details-full {
+    grid-column: 1 / -1;
+}
+
+.project-details-full .value,
+.project-details-full input,
+.project-details-full textarea {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    white-space: pre-wrap;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.project-details-full textarea {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.status-badge.finished {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 2px solid #4caf50;
+}
+
+.status-badge.in-progress {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 2px solid #ff9800;
+}
+
+.status-badge.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.status-badge.clickable:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.status-badge.clickable:active {
+    transform: translateY(0px);
+}
+
+/* Update Button */
+.update-project-btn {
+    background: #007bff; /*edited*/
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.update-project-btn:hover {
+    background: #2762d9;  /*edited*/
+}
+
+/* Stage Management Section */
+.stage-management-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #2e7d32;
+}
+
+.stage-management-card h3 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.stage-dropdown-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.stage-dropdown-container label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.stage-dropdown-container select {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.stage-dropdown-container button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.stage-dropdown-container button:hover {
+    background: #1b5e20;
+}
+
+/* Enhanced Table Styling */
+.stages-table-container {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#stagesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+#stagesTable th {
+    background: #f5f5f5;
+    padding: 15px 12px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    text-align: left;
+}
+
+#stagesTable td {
+    padding: 12px;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: middle;
+}
+
+#stagesTable tr:hover {
+    background: #f8f9fa;
+}
+
+#stagesTable tr:last-child td {
+    border-bottom: none;
+}
+
+/* Hide stages table on mobile, show mobile cards */
+    .stages-table-container {
+        overflow-x: auto;
+        margin: 0 -15px;
+    }
+    
+    #stagesTable {
+        display: table;
+        min-width: 600px;
+        font-size: 12px;
+    }
+    
+    /* Mobile stages cards - hidden by default */
+    .mobile-stages-cards {
+        display: none;
+    }
+    
+    /* Show mobile cards and hide table on mobile */
+    @media (max-width: 768px) {
+        #stagesTable {
+            display: none !important;
+        }
+        
+        .mobile-stages-cards {
+            display: block !important;
+            margin: 15px 0;
+        }
+        
+        .stages-table-container {
+            overflow: visible;
+            margin: 0;
+        }
+    }
+    
+/* Force hide table and show mobile cards on small screens */
+@media screen and (max-width: 768px) {
+    .stages-table-container #stagesTable {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    .stages-table-container .mobile-stages-cards {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    table#stagesTable {
+        display: none !important;
+    }
+}
+
+/* Utility classes for handling long content */
+.text-break {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+}
+
+.text-truncate {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.text-wrap {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .dashboard-container {
+        padding: 10px 15px;
+    }
+    
+    .back-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+        margin-bottom: 15px;
+    }
+    
+    .project-info-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .project-info-item .label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+    
+    .project-info-item .value,
+    .project-info-item input,
+    .project-info-item textarea {
+        font-size: 13px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        padding: 8px;
+    }
+    
+    .project-info-card,
+    .stage-management-card {
+        margin: 15px 0;
+        padding: 15px;
+    }
+    
+    .project-info-card h3,
+    .stage-management-card h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .stages-table-container {
+        overflow-x: auto;
+        margin: 0 -15px;
+    }
+    
+    #stagesTable {
+        display: none !important;
+        min-width: 600px;
+        font-size: 12px;
+    }
+    
+    .mobile-stages-cards {
+        display: block !important;
+        margin: 15px 0;
+    }
+    
+    #stagesTable th,
+    #stagesTable td {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+    
+    .stage-dropdown-container select {
+        max-width: 100%;
+        font-size: 13px;
+        padding: 8px;
+    }
+    
+    .update-project-btn {
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .dashboard-container {
+        padding: 8px 10px;
+    }
+    
+    .back-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+        margin-bottom: 10px;
+    }
+    
+    .project-info-card,
+    .stage-management-card {
+        margin: 10px -2px;
+        padding: 12px;
+        border-radius: 6px;
+    }
+    
+    .project-info_card h3,
+    .stage-management-card h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .project-info-item .label {
+        font-size: 11px;
+    }
+    
+    .project-info-item .value,
+    .project-info-item input,
+    .project-info-item textarea {
+        font-size: 12px;
+        padding: 6px;
+    }
+    
+    .stages-table-container {
+        margin: 0 -12px;
+    }
+    
+    #stagesTable {
+        min-width: 500px;
+        font-size: 10px;
+    }
+    
+    #stagesTable th,
+    #stagesTable td {
+        padding: 6px 4px;
+        font-size: 9px;
+    }
+    
+    .stage-dropdown-container select {
+        font-size: 12px;
+        padding: 6px;
+    }
+    
+    .stage-dropdown-container button {
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+    
+    .update-project-btn,
+    .stage-dropdown-container button {
+        width: 100%;
+        font-size: 12px;
+        padding: 8px 12px;
+        margin-top: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+    
+    .modal-content h3 {
+        font-size: 14px;
+    }
+    
+    .modal-content p {
+        font-size: 12px;
+    }
+    
+    .modal-content button {
+        font-size: 11px;
+        padding: 6px 12px;
+        margin: 5px;
+    }
+}
+
+/* Mobile Stage Cards Styling */
+.mobile-stage-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 12px 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: calc(100% - 30px);
+    box-sizing: border-box;
+}
+
+.mobile-stage-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-stage-card-title {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.mobile-stage-card-status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.mobile-stage-card-status.autofilled {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.mobile-stage-card-status.completed {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.mobile-stage-card-status.available {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.mobile-stage-card-body {
+    margin-bottom: 12px;
+}
+
+.mobile-stage-card-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.mobile-stage-card-label {
+    font-weight: 500;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.mobile-stage-card-value {
+    color: #333;
+    font-size: 13px;
+    background: #f8f9fa;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    word-wrap: break-word;
+}
+
+.mobile-stage-card-value input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    color: #333;
+}
+
+.mobile-stage-card-value input:disabled {
+    color: #666;
+}
+
+.mobile-stage-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.mobile-stage-action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.mobile-stage-action-btn.submit-btn {
+    background: #28a745;
+    color: white;
+}
+
+.mobile-stage-action-btn.submit-btn:hover {
+    background: #218838;
+}
+
+.mobile-stage-action-btn.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.mobile-stage-action-btn.delete-btn:hover {
+    background: #c82333;
+}
+
+.mobile-stage-action-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+
+.modal-body {
+    padding: 20px 25px;
+    text-align: center;
+}
+
+.modal-body p {
+    margin: 0;
+    color: #555;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.modal-footer {
+    padding: 15px 25px 25px;
+    display: flex;
+    justify-content: center; /* Changed from flex-end to center */
+    gap: 12px; /* Slightly increased gap for better spacing */
+}
+
+.btn-cancel, .btn-confirm {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    min-width: 80px;
+}
+
+.btn-cancel {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+}
+
+.btn-cancel:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.btn-confirm {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.btn-confirm:hover {
+    background-color: #1b5e20;
+}
+
+/* Mobile responsiveness - keep the existing mobile styles */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        align-items: center; /* Center the stacked buttons on mobile */
+    }
+    
+    .btn-cancel, .btn-confirm {
+        width: 100%;
+        max-width: 200px; /* Prevent buttons from being too wide on mobile */
+    }
+}
+
+
+
+.modal-warning {
+    color: #d32f2f;
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Ensure both modals use the same styling */
+#submitModal .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Modal styling for delete confirmation */
+.modal-warning {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+#deleteModal .modal-warning {
+    color: #dc3545 !important;
+    font-weight: bold !important;
+    background-color: #f8d7da;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #dc3545;
+}
+
+#deleteModal .btn-confirm {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+#deleteModal .btn-confirm:hover {
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+/* Responsive adjustments for mobile stage cards on small screens */
+@media (max-width: 480px) {
+    .mobile-stage-card {
+        margin: 10px 10px;
+        padding: 12px;
+        width: calc(100% - 20px);
+    }
+    
+    .mobile-stage-card-title {
+        font-size: 13px;
+    }
+    
+    .mobile-stage-card-label {
+        font-size: 11px;
+    }
+    
+    .mobile-stage-card-value {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+    
+    .mobile-stage-action-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+}
+
+/* Mobile stages cards - hidden by default */
+.mobile-stages-cards {
+    display: none;
+}

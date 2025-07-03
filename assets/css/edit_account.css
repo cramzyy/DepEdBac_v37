@@ -1,0 +1,150 @@
+.modal {
+      display: block;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 25px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: black;
+    }
+    
+    /* Card Container */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    
+    /* Info Card */
+    .info-card {
+      flex: 1;
+      min-width: 280px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .info-card h3 {
+      margin-top: 0;
+      color: #0d47a1;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .info-row {
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .info-label {
+      font-weight: bold;
+      width: 150px;
+      margin-right: 15px;
+      color: #495057;
+    }
+    
+    .info-value {
+      flex: 1;
+      color: #212529;
+    }
+    
+    /* Password Card */
+    .password-card {
+      flex: 1;
+      min-width: 280px;
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid #e9ecef;
+    }
+    
+    .password-card h3 {
+      margin-top: 0;
+      color: #0d47a1;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    form input[type="text"],
+    form input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    form input[type="text"]:focus,
+    form input[type="password"]:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
+    form button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      width: 100%;
+      border: none;
+      background-color: #0d47a1;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    form button:hover {
+      background-color: #0a3880;
+    }
+    
+    /* Responsive adjustments */
+@media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+      }
+      
+      .info-card, .password-card {
+        width: 100%;
+      }
+}

@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff0d0;
+}
+
+/* Background watermark for logged-in pages (not login page) */
+body:not(.home-bg) {
+  position: relative;
+}
+
+body:not(.home-bg)::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/DepEd_Logo.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: 600px;
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+}
+
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Global box-sizing rule */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Global utility classes */
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.error-text {
+    color: red;
+}
+
+.success-text {
+    color: green;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.no-results {
+    display: block;
+}
+
+.loading-message {
+    text-align: center; 
+    margin-top: 20px;
+}
